@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -30,7 +30,11 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        
         <li><button type="button" class="btn btn-info" onclick="window.location = '/create-post'">Create Post</button></li>
+        <li><a href="{{ url_for('auth.register') }}" class=""><i class="fa fa-user-plus"></i></a></li>
+        <li><a href="{{ url_for('auth.login') }}" class=""><i class="fa fa-sign-in"></i></a></li>
+        
       </ul>
     </div>
   </div>
