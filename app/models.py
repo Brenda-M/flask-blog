@@ -48,3 +48,11 @@ class Comment(db.Model):
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
   blogpost_id = db.Column(db.Integer, db.ForeignKey('blogposts.id'), nullable=False)
+
+class Quotes:
+
+  def __init__(self, id, author, quote):
+    self.id = id
+    self.author = author
+    self.quote = quote
+
