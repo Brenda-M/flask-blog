@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+from flask_simplemde import SimpleMDE
 from config import config_options
 
 db = SQLAlchemy() #instance of the db
@@ -11,6 +12,7 @@ bootstrap = Bootstrap()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 mail = Mail()
+simple = SimpleMDE()
 
  
 
@@ -24,6 +26,7 @@ def create_app(config_name):
   login_manager.init_app(app)
   bcrypt.init_app(app)
   mail.init_app(app)
+  simple.init_app(app)
 
   #Registering blueprints
   from .main import main
