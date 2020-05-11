@@ -1,3 +1,35 @@
-body{
+*{
+  margin: 0;
+  padding: 0;
   font-family: 'Covered By Your Grace', cursive;
 }
+
+.btn-primary{
+  background: #1ab188;
+  border: 0px;
+  border-radius: 0px;
+  margin-top: 20px;
+  border-left: 70px;
+  font-size: 19px;
+  width: 200px;
+}
+
+.signup-login{
+  /* background-color: #34495e; */
+  background-image: url('../images/assets/bg-3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 1000px;
+  opacity: 0.9;
+}
+
+.panel{
+  padding: 30px;
+  margin-top: 50px;
+}
+
+
+.btn-primary:hover{
+  background:  #1ab188;
+}
+

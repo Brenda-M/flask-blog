@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{{ url_for('main.index') }}">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#"></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -31,7 +31,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
-        <li><button type="button" class="btn btn-info" onclick="window.location = '/create-post'">Create Post</button></li>
+        <li><a class="btn btn-info" href="{{ url_for('main.new_post') }}">Create Post</a></li>
         <li><a href="{{ url_for('auth.register') }}" class=""><i class="fa fa-user-plus"></i></a></li>
         <li><a href="{{ url_for('auth.login') }}" class=""><i class="fa fa-sign-in"></i></a></li>
         
