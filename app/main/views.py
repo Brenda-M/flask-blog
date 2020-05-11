@@ -1,7 +1,7 @@
 import markdown2
 from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user, login_required
-from app.models import BlogPost, User
+from app.models import BlogPost, User, Comment
 from .forms import NewPost, CommentForm
 from .utils import save_blog_picture
 from . import main
@@ -84,3 +84,22 @@ def delete_post(blogpost_id):
   db.session.commit()
   flash('Your post has been deleted', 'success')
   return redirect(url_for('.index'))
+
+@main.route('/post/<int:blogpost_id>/comments/<int:comment_id>/delete', methods=['POST'])
+@login_required
+def delete_comment(blogpost_id, comment_id):
+  post = BlogPost.query.get_or_404(blogpost_id)
+  print(current_user.id)
+  
+  if post:
+    comment = Comment.query.get_or_404(comment_id)
+    print(comment.user_id)
+    if comment.user_id == current_user.id or post.author == current_user.id:
+      
+      db.session.delete(comment)
+      db.session.commit()
+      flash('Your comment has been deleted', 'success')
+      return redirect(url_for('.post', blogpost_id= blogpost_id))
+    else:
+      abort(403)
+
