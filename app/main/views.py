@@ -1,10 +1,11 @@
 from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user
-from app.models import BlogPost
+from app.models import BlogPost, User
 from .forms import NewPost
 from .utils import save_blog_picture
 from . import main
 from app import db
+from app.email import subscription_email
 
 
 @main.route('/')
@@ -31,7 +32,7 @@ def new_post():
     users = User.query.all()
     for user in users:
       if user.email != current_user.email:
-        subscription_email(user.email)
+        subscription_email("New Post Alert", "email/new_post_subscription", user.email, user=user)
 
     flash('Your post has been created!', 'success')
     return redirect(url_for('.index'))
