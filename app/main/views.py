@@ -2,6 +2,7 @@ import markdown2
 from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user, login_required
 from app.models import BlogPost, User, Comment
+from app.requests import get_quotes
 from .forms import NewPost, CommentForm
 from .utils import save_blog_picture
 from . import main
@@ -13,9 +14,11 @@ from app.email import subscription_email
 @main.route('/home')
 def index():
 
+  quotes = get_quotes()
+
   blogpost = BlogPost.query.filter().order_by(BlogPost.created_at.desc())
 
-  return render_template('index.html', title = 'Welcome to TechBlog', blogposts=blogpost)
+  return render_template('index.html', title = 'Welcome to TechBlog', blogposts=blogpost, quotes=quotes)
 
 @main.route('/new_post', methods=['GET', 'POST'])
 def new_post():
@@ -25,7 +28,7 @@ def new_post():
   if form.validate_on_submit():
     picture_file = ''
     if form.image_file.data:
-      picture_file =  save_blog_picture(form.image_file.data).decode('utf-8')
+      picture_file =  save_blog_picture(form.image_file.data)
     post = BlogPost(title=form.title.data, content=form.content.data, category=form.category.data, author=current_user, image_file=picture_file)
     db.session.add(post)
     db.session.commit()
