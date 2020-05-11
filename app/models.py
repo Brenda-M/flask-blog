@@ -32,15 +32,26 @@ class BlogPost(db.Model):
   created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   content = db.Column(db.Text, nullable=False)
-  category = db.Column(db.String(200), nullable = False)
   image_file = db.Column(db.String(120), nullable =True, default='default.jpg')
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   comments = db.relationship('Comment', backref='blog_post', cascade='all, delete-orphan', lazy='dynamic')
+  category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
 
   @classmethod
-  def get_blogposts(cls, category_name):
-    blogpost = BlogPost.query.filter_by(category=category_name).all()
-    return blogpost
+  def get_categories(cls):
+    categories = Category.query.all()
+    return categories
+
+
+class Category(db.Model):
+
+  __tablename__ = 'categories'
+
+  id = db.Column(db.Integer, primary_key = True)
+  category_title = db.Column(db.String(200), nullable = False)
+  categories = db.relationship('Category', backref='category', lazy='dynamic')
+
+
 
 
 class Comment(db.Model):
