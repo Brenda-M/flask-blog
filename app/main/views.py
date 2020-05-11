@@ -1,6 +1,6 @@
 import markdown2
 from flask import render_template, redirect, url_for, request, flash, abort
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.models import BlogPost, User
 from .forms import NewPost
 from .utils import save_blog_picture
@@ -42,17 +42,30 @@ def new_post():
 @main.route('/post/<int:blogpost_id>/update', methods=['GET', 'POST'])
 @login_required
 def update_post( blogpost_id):
+
   post = BlogPost.query.get_or_404( blogpost_id)
+
   if post.author != current_user:
     abort(403)
-  form = PostForm()
+  form = NewPost()
   if form.validate_on_submit():
     post.title = form.title.data
     post.content = form.content.data
     db.session.commit()
     flash('Your blog post has been updated', 'success')
-    return redirect(url_for('main.post', blogpost_id= blogpost_id))
+    return redirect(url_for('.index', blogpost_id= blogpost_id))
   elif request.method == 'GET':
     form.title.data = post.title
     form.content.data = post.content
   return render_template('create_post.html', title='Update Blog Post', form=form, legend='Update Post',  blogpost_id= blogpost_id)
+
+@main.route('/post/<int:blogpost_id>/delete', methods=['POST'])
+@login_required
+def delete_post(blogpost_id):
+  post = BlogPost.query.get_or_404(blogpost_id)
+  if post.author != current_user:
+    abort(403)
+  db.session.delete(post)
+  db.session.commit()
+  flash('Your post has been deleted', 'success')
+  return redirect(url_for('.index'))
