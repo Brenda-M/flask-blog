@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="jumbotron">
-  <h5 class="mt-3 text-success">{{quotes.quote}}</h5>
-  <p>~ {{quotes.author}}~ </p>
-</div>
 
-<div class="container">
+{% block carousel %}
+{% include 'carousel.html' %}
+{% endblock carousel %}
+
+<div class="container demo">
   {% for post in blogposts %}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="../static/images/blog_pictures/{{ post.image_file }}" alt="{{ post.title }}">
-      <div class="caption">
-        <h3>{{ post.title }}</h3>
-        <p> {{ post.content }}</p>
-        <p><a href="{{ url_for('.post', blogpost_id=post.id)}}" class="btn btn-primary" role="button">Read More</a></p>
-      </div>
+  <div class="card posts" style="width: 18rem;">
+    <img class="card-img-top" src="../static/images/blog_pictures/{{ post.image_file }}" alt="{{ post.title }}">
+    <div class="card-body">
+      <h5 class="title">{{ post.title }}</h5>
+      <a href="{{ url_for('.post', blogpost_id=post.id)}}" class="btn btn-primary">Read More</a>
     </div>
   </div>
   {% endfor %}
