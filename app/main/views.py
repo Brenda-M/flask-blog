@@ -2,7 +2,7 @@ import markdown2
 from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import current_user, login_required
 from app.models import BlogPost, User
-from .forms import NewPost
+from .forms import NewPost, CommentForm
 from .utils import save_blog_picture
 from . import main
 from app import db
