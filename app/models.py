@@ -37,6 +37,12 @@ class BlogPost(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   comments = db.relationship('Comment', backref='blog_post', cascade='all, delete-orphan', lazy='dynamic')
 
+  @classmethod
+  def get_blogposts(cls, category_name):
+    blogpost = BlogPost.query.filter_by(category=category_name).all()
+    return blogpost
+
+
 class Comment(db.Model):
 
   __tablename__='comments'
