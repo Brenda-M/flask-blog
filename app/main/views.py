@@ -39,6 +39,21 @@ def new_post():
     return redirect(url_for('.index'))
   return render_template('create_post.html', title='New Post Blog', form=form, legend='New Post')
 
+@main.route('/post/<blogpost_id>', methods=['GET', 'POST'])
+def post( blogpost_id):
+  post = BlogPost.query.get_or_404(blogpost_id) #fetching post from database by id
+  form =  CommentForm()
+  if form.validate_on_submit():
+    comment = Comment(content=form.content.data, author=current_user,  blogpost_id =  blogpost_id)
+    db.session.add(comment)
+    db.session.commit()
+    flash('Your comment has been posted!', 'success')
+    return redirect(url_for('.post',  blogpost_id= blogpost_id))
+    
+  all_comments = Comment.query.filter_by( blogpost_id= blogpost_id).all()
+
+  return render_template('post_detail.html', title=post.title, post=post, legend='Leave a Comment', form=form, comments=all_comments)
+
 @main.route('/post/<int:blogpost_id>/update', methods=['GET', 'POST'])
 @login_required
 def update_post( blogpost_id):
