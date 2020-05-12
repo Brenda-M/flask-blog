@@ -48,7 +48,21 @@ body{
   font-family: 'Katibeh', cursive;
 }
 
+.new-post{
+  width: 600px;
+  margin-top: 50px;
+  padding: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+  background: url('../images/assets/bg.png');
+  overflow: hidden;
+  font-family: 'Katibeh', cursive;
+}
 
+.image{
+  font-size: 25px;
+  color: white;
+}
 
 .sign-up-login-btn{
   margin-top: 20px;
@@ -57,6 +71,15 @@ body{
   color: #fff;
   border-radius: 44px;
   cursor: pointer;
+}
+
+.comment{
+  margin-top: 30px;
+}
+
+.content-form{
+  resize: none;
+  width: 700px;
 }
 
 .sign-up-login-btn:hover{
@@ -140,3 +163,6 @@ nav{
 .title{
   font-weight: bold;
 }
+
+.media{
+  margin-top: 20px;
