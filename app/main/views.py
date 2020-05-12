@@ -21,13 +21,16 @@ def index():
   return render_template('index.html', title = 'Welcome to TechBlog', blogposts=blogpost, quotes=quotes)
 
 @main.route('/new_post', methods=['GET', 'POST'])
+@login_required
 def new_post():
 
   form = NewPost()
 
   if form.validate_on_submit():
     picture_file = ''
-    if form.image_file.data:
+    if form.image_file.data == None:
+      picture_file = 'default.jpg'
+    else:
       picture_file =  save_blog_picture(form.image_file.data)
     post = BlogPost(title=form.title.data, content=form.content.data, category=form.category.data, author=current_user, image_file=picture_file)
     db.session.add(post)

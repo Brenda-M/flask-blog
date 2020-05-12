@@ -1,7 +1,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Katibeh', cursive;
+
 }
 
 .btn-primary{
@@ -14,21 +14,76 @@
   width: 200px;
 }
 
+body{
+  background-color: rgba(158, 158, 158, 0.1) ;
+}
+
 .title{
   font-weight: bold;
 }
 
 .sign-up-login-form{
-  background: #CBF3F0;
-  opacity:0.9;
-  padding:2em;
-  border:#ccc 2px solid;
-  position:absolute;
-  top: 150px;
-  left: 50px;
-  width: 500px;
-  font-family: 'Covered By Your Grace', cursive;
+  width: 400px;
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  background: url('../images/assets/bg.png');
+  overflow: hidden;
+}
+
+
+.sign-up-login-form{
+  margin-top: 100px;
+  font-family: 'Permanent Marker', cursive;
+  color: #fff;
+  font-size: 40px;
+}
+
+.comment{
+  color: black;
+}
+
+
+.sign-up-login-form{
+  font-family: 'Katibeh', cursive;
+}
+
+
+
+.sign-up-login-btn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: #487eb0;
+  color: #fff;
+  border-radius: 44px;
+  cursor: pointer;
+}
+
+.sign-up-login-btn:hover{
+  transform: scale(0.96);
+}
+
+.sign-up-login-form a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px;
+  transition: 0.8s;
+  display: block;
+}
+
+.text-muted{
+  font-size: 15px;
+}
+
+.form-control-label{
   font-size: 25px;
+  color: white;
+}
+
+.form-check-label{
+  color: white;
+  font-size: 15px;
 }
 
 .fa{
@@ -39,10 +94,25 @@
   margin-top: 80px;
 }
 
+
 nav{
-  background-color: #ef767a;
-  padding: 0;
-  margin: 0px;
+  font-size: 20px;
+}
+
+
+.blogs{
+  font-family: 'Noto Serif', serif;
+}
+
+
+
+.page-footer{
+  background-color: black;
+  font-weight: bold;
+  color: white;
+  height: 20vh;
+  padding-top: 50px;
+  font-size: 40px;
 }
 
 
@@ -50,19 +120,9 @@ nav{
   background:  #1ab188;
 }
 
-.btn-info{
-  margin-top: 10px;
-  text-decoration: none;
+.blogs{
+  color: black;
 }
-
-.nav-link li a{
-  transition: all 0.3s ease 0s;
-}
-
-.nav-link li a:hover{
-  color: #0088a9;
-}
-
 
 .demo{
   display: flex;
@@ -73,4 +133,10 @@ nav{
 
 .posts{
   margin-top: 20px;
+  margin-left: 40px;
+}
+
+
+.title{
+  font-weight: bold;
 }
